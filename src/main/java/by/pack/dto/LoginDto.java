@@ -9,8 +9,8 @@ import javax.validation.constraints.Pattern;
 @Setter
 public class LoginDto {
 
-    @Pattern(regexp = "([A-Za-z]*)", message = "The UserName isn't correct, try again")
-    private String userName;
-    @Pattern(regexp = "(^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$)" , message = "The Email isn't correct, try again")
+    @Pattern(regexp = "(^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$)", message = "The Email isn't correct, try again")
     private String email;
+    @Pattern(regexp = "(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$)" , message = "Password isn't correct, try again")
+    private String password;
 }
