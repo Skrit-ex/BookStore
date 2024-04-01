@@ -22,9 +22,9 @@ public class Book {
 
     private String nameBook;
 
-    private String NameAuthor;
+    private String nameAuthor;
 
-    private String LastNameAuthor;
+    private String lastNameAuthor;
 
-    private String Genre;
+    private Genre genre;
 }
