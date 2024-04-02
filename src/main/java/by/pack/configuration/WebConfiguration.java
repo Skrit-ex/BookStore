@@ -10,6 +10,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
@@ -19,7 +21,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableWebMvc
 @ComponentScan(basePackages = "by.pack")
-public class WebConfiguration {
+public class WebConfiguration implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver() {
@@ -55,6 +57,10 @@ public class WebConfiguration {
             hibernateTransactionManager.setSessionFactory(sessionFactoryBean().getObject());
             return hibernateTransactionManager;
         }
+
+    public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+        return new RequestMappingHandlerAdapter();
+    }
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();

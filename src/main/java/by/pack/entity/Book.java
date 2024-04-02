@@ -1,9 +1,7 @@
 package by.pack.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "books", uniqueConstraints = {
         @UniqueConstraint(columnNames = "id")
 })
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -27,4 +28,7 @@ public class Book {
     private String lastNameAuthor;
 
     private Genre genre;
+
+    public Book(String nameBook, String nameAuthor, String lastNameAuthor, String genre) {
+    }
 }
