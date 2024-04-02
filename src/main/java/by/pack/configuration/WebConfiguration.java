@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
@@ -58,9 +57,6 @@ public class WebConfiguration implements WebMvcConfigurer {
             return hibernateTransactionManager;
         }
 
-    public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-        return new RequestMappingHandlerAdapter();
-    }
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
