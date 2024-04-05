@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Skritex
@@ -26,9 +27,9 @@
     <tbody>
     <tr>
         <th scope="row">1</th>
-        <td>${author}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>${author1}</td>
+        <td>${author2}</td>
+        <td>${author2}</td>
     </tr>
     <tr>
         <th scope="row">2</th>
