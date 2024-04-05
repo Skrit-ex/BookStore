@@ -31,9 +31,9 @@ public class UserController {
         return "reg";
     }
 
-    @PostMapping
-    public String reg(Model model, BindingResult bindingResult,
-                      @ModelAttribute("newUserReg")@Valid RegUserDto regUserDto){
+    @PostMapping("/reg")
+    public String reg(@ModelAttribute("newUserReg")@Valid RegUserDto regUserDto,
+                      Model model, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "reg";
         }
@@ -49,19 +49,21 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(Model model){
-        model.addAttribute("newLoginUser", new LoginDto());
+        model.addAttribute("newUserLogin", new LoginDto());
         return "login";
     }
 
     @PostMapping("/login")
     public String login(@ModelAttribute("newUserLogin")@Valid LoginDto loginDto,
-                        Model model, BindingResult bindingResult, HttpSession httpSession){
+                         BindingResult bindingResult,
+                         Model model,
+                         HttpSession httpSession){
         if(bindingResult.hasErrors()){
             return "login";
         }
-        Optional<SessionUser> user = userService.login(loginDto);
-        if(user.isPresent()){
-            httpSession.setAttribute("userSession", user.get());
+        Optional<SessionUser> sessionUser = userService.login(loginDto);
+        if(sessionUser.isPresent()){
+            httpSession.setAttribute("userSession", sessionUser.get());
             return "redirect:/calc";
         }
         else{
