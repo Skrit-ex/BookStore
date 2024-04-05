@@ -19,7 +19,7 @@ public class FileController {
     private HibernateBookDao hibernateBookDao;
 
     @PostMapping("/upload")
-    public String upload(@RequestParam("file")MultipartFile file){
+    public String upload(@RequestParam("files")MultipartFile file){
         try{
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream()));
             String line;

@@ -1,0 +1,10 @@
+curl -X POST -H "Content-Type: application/json" -d {
+"nameBook": "Название книги",
+"nameAuthor": "Имя автора",
+"lastNameAuthor": "Фамилия автора",
+"genre": "Фантастика"
+} http://localhost:8080/upload
+
+
+curl -X POST -H "Content-Type: application/json" -d {"nameBook": "Название книги", "nameAuthor": "Имя автора", "lastNameAuthor": "Фамилия автора", "genre": "Фантастика"} http://localhost:8080/upload
+curl -X POST -H 'Content-Type: application/json' -d @G:/JDK/BookStore/src/main/resourcesfiles.json http://localhost:8080/upload
