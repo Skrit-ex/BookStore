@@ -7,7 +7,6 @@ import by.pack.entity.SessionUser;
 import by.pack.entity.User;
 import by.pack.mapper.RegUserMapper;
 import by.pack.mapper.UserSessionMapper;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class UserService {
             User currentUser = user.get();
 
             if(currentUser.getPassword().equals(loginDto.getPassword())){
-                return Optional.of(UserSessionMapper.sessionUserToUser(currentUser));
+                return Optional.of(UserSessionMapper.userToSessionUser(currentUser));
             }
         }
         return Optional.empty();

@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Table (name = "userTab", uniqueConstraints = {
+@Table (name = "usertab", uniqueConstraints = {
 @UniqueConstraint(columnNames = "id"),
 @UniqueConstraint(columnNames = "username"),
 @UniqueConstraint(columnNames = "email")

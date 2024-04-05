@@ -5,12 +5,13 @@ import by.pack.entity.User;
 
 public class UserSessionMapper {
 
-    public static SessionUser sessionUserToUser(User user){
+    public static SessionUser userToSessionUser(User user){
         SessionUser sessionUser = new SessionUser();
-        sessionUser.setFirstname(sessionUser.getFirstname());
-        sessionUser.setLastname(sessionUser.getLastname());
-        sessionUser.setUsername(sessionUser.getUsername());
-        sessionUser.setEmail(sessionUser.getEmail());
+        sessionUser.setId(user.getId());
+        sessionUser.setFirstname(user.getFirstname());
+        sessionUser.setLastname(user.getLastname());
+        sessionUser.setUsername(user.getUsername());
+        sessionUser.setEmail(user.getEmail());
         return sessionUser;
     }
 }

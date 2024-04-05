@@ -26,11 +26,14 @@
         <a class="nav-link active" aria-current="page" href="/">Home</a>
         <a class="nav-link" href="/user/reg">Registration</a>
         <a class="nav-link" href="/user/login">LogIn</a>
-        <a class="nav-link" href="/library">Library</a>
+
+        <c:if test="${sessionScope.userSession != null}">
+          <a class="nav-link" href="/logout">LogOut</a>
+        </c:if>
 
         <c:if test="${sessionScope.userSession != null}">
           <li class="nav-item">
-            <a class="nav-link" href="/calc">Library</a>
+            <a class="nav-link" href="/library">Library</a>
           </li>
         </c:if>
 

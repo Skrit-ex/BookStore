@@ -26,7 +26,7 @@ public class HibernateUserDao {
     @Transactional(readOnly = true)
     public Optional<User> findByEmail(String email) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<User> query = currentSession.createQuery("from userTab where email =: email", User.class);
+        Query<User> query = currentSession.createQuery("from User where email =: email", User.class);
         query.setParameter("email", email);
         try {
             return Optional.of(query.getSingleResult());

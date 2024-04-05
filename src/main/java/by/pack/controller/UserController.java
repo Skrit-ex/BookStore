@@ -26,49 +26,55 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/reg")
-    public String reg(Model model){
+    public String reg(Model model) {
         model.addAttribute("newUserReg", new RegUserDto());
         return "reg";
     }
 
     @PostMapping("/reg")
-    public String reg(@ModelAttribute("newUserReg")@Valid RegUserDto regUserDto,
-                      Model model, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String reg(@ModelAttribute("newUserReg") @Valid RegUserDto regUserDto,
+                      Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "reg";
         }
-        try{
+        try {
             userService.save(regUserDto);
-        }catch (ConstraintViolationException e){
-            model.addAttribute("regError", "User with this username and email already exist" );
-        return "reg";
+        } catch (ConstraintViolationException e) {
+            model.addAttribute("regError", "User with this username and email already exist");
+            return "reg";
         }
         return "redirect:/user/login";
     }
 
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("newUserLogin", new LoginDto());
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("newUserLogin")@Valid LoginDto loginDto,
-                         BindingResult bindingResult,
-                         Model model,
-                         HttpSession httpSession){
-        if(bindingResult.hasErrors()){
+    public String login(@ModelAttribute("newUserLogin") @Valid LoginDto loginDto,
+                        BindingResult bindingResult,
+                        Model model,
+                        HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
             return "login";
         }
         Optional<SessionUser> sessionUser = userService.login(loginDto);
-        if(sessionUser.isPresent()){
+        if (sessionUser.isPresent()) {
             httpSession.setAttribute("userSession", sessionUser.get());
             return "redirect:/calc";
+        } else {
+            model.addAttribute("loginError", "Login or password is wrong, try again");
+            return "login";
         }
-        else{
-            model.addAttribute("loginError" , "Login or password is wrong, try again");
-       return "login";
-        }
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
     }
 }
