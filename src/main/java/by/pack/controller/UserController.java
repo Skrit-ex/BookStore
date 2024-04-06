@@ -8,11 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
@@ -64,7 +60,7 @@ public class UserController {
         Optional<SessionUser> sessionUser = userService.login(loginDto);
         if (sessionUser.isPresent()) {
             httpSession.setAttribute("userSession", sessionUser.get());
-            return "redirect:/calc";
+            return "redirect:/";
         } else {
             model.addAttribute("loginError", "Login or password is wrong, try again");
             return "login";
@@ -72,9 +68,4 @@ public class UserController {
 
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
-        return "redirect:/";
-    }
 }
