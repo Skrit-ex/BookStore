@@ -18,6 +18,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th scope="col">Number</th>
         <th scope="col">Book</th>
         <th scope="col">NameAuthor</th>
         <th scope="col">LastNameAuthor</th>
@@ -27,18 +28,27 @@
     <tbody>
     <tr>
         <th scope="row">1</th>
+        <td>${nameBook1}</td>
+        <td>${nameBook2}</td>
+        <td>${nameBook3}</td>
+        <td>${nameBook4}</td>
+        <td>${nameBook5}</td>
+    </tr>
+
+    <tr>
+        <th scope="row">2</th>
         <td>${author1}</td>
         <td>${author2}</td>
         <td>${author2}</td>
     </tr>
     <tr>
-        <th scope="row">2</th>
+        <th scope="row">3</th>
         <td>Jacob</td>
         <td>Thornton</td>
         <td>@fat</td>
     </tr>
     <tr>
-        <th scope="row">3</th>
+        <th scope="row">4</th>
         <td colspan="2">Larry the Bird</td>
         <td>@twitter</td>
     </tr>

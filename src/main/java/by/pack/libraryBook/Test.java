@@ -1,23 +1,14 @@
 package by.pack.libraryBook;
 
-import by.pack.dao.HibernateBookDao;
 import by.pack.entity.Book;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.io.*;
 
-
-@Component
-public class LibraryBooks {
-
-    @Autowired
-    private HibernateBookDao hibernateBookDao;
-
-
-
-
-    public void saveBook() {
+public class Test {
+    public static void main(String[] args) {
+        saveBook();
+    }
+    public static void saveBook() {
         File file = new File("G:\\JDK\\BookStore\\src\\main\\java\\by\\pack\\libraryBook\\Bookfile");
 
         try {
@@ -32,7 +23,7 @@ public class LibraryBooks {
                         String lastNameAuthor = data[2];
                         String genre = data[3];
                         Book book = new Book(nameBook, nameAuthor, lastNameAuthor, genre);
-                        hibernateBookDao.save(book);
+                        System.out.println(book);
                     }
                 }
             }
@@ -40,8 +31,9 @@ public class LibraryBooks {
             e.printStackTrace();
 
 
-            } catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 }
+
