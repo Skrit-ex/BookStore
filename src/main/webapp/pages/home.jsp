@@ -14,9 +14,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body body style="background-color: #525151;">
 
-<nav class="navbar navbar-expand-lg bg-dark p2 " style="--bs-bg-opacity: .1;">
+<nav class="navbar navbar-expand-lg bg-dark p2 " style="--bs-bg-opacity: .3;">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <c:if test="${sessionScope.userSession == null}">
         <a class="nav-link" href="/user/reg">Registration</a>
+        </c:if>
         <a class="nav-link" href="/user/login">LogIn</a>
 
         <c:if test="${sessionScope.userSession != null}">
