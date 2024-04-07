@@ -29,6 +29,10 @@ public class Book {
 
     private Genre genre;
 
-    public Book(String nameBook, String nameAuthor, String lastNameAuthor, String genre) {
+    public Book(String nameBook, String nameAuthor, String lastNameAuthor, Genre genre) {
+        this.nameBook = nameBook;
+        this.nameAuthor = nameAuthor;
+        this.lastNameAuthor = lastNameAuthor;
+        this.genre = genre;
     }
 }

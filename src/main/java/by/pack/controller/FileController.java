@@ -2,6 +2,7 @@ package by.pack.controller;
 
 import by.pack.dao.HibernateBookDao;
 import by.pack.entity.Book;
+import by.pack.entity.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class FileController {
                     String nameBook = data[0];
                     String nameAuthor = data [1];
                     String lastNameAuthor = data [2];
-                    String genre = data [3];
+                    Genre genre = null;
                     Book book = new Book(nameBook,nameAuthor,lastNameAuthor,genre);
                     hibernateBookDao.save(book);
                 }
