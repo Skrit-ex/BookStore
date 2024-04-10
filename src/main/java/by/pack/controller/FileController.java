@@ -31,7 +31,7 @@ public class FileController {
                     String nameBook = data[0];
                     String nameAuthor = data [1];
                     String lastNameAuthor = data [2];
-                    Genre genre = null;
+                    String genre = data[3];
                     Book book = new Book(nameBook,nameAuthor,lastNameAuthor,genre);
                     hibernateBookDao.save(book);
                 }

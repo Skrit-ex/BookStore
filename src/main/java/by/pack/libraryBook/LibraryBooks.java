@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.Objects;
 
 
 @Component
@@ -17,10 +18,12 @@ public class LibraryBooks {
 
 
     public void saveBook() {
-        File file = new File("G:\\JDK\\BookStore\\src\\main\\java\\by\\pack\\libraryBook\\Bookfile");
+        InputStreamReader inputStreamReader = new InputStreamReader
+                (Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("BookFile")));
+
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if (!line.isEmpty()) {
@@ -29,7 +32,7 @@ public class LibraryBooks {
                         String nameBook = data[0];
                         String nameAuthor = data[1];
                         String lastNameAuthor = data[2];
-                        Genre genre = null;
+                        String genre = data[3];
                         Book book = new Book(nameBook, nameAuthor, lastNameAuthor, genre);
                         System.out.println(book);
                         hibernateBookDao.save(book);
@@ -37,7 +40,7 @@ public class LibraryBooks {
                 }
             }
         }catch (FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("file not found");;
 
 
             } catch (IOException e) {

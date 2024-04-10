@@ -19,7 +19,7 @@ public class BookDto {
     @Pattern(regexp = "([A-Za-z]*)" , message = "The lastNameAuthor isn't correct, try again")
     private String lastNameAuthor;
 
-    private Genre genre;
+    private String genre;
 
     private Long UserId;
 }
