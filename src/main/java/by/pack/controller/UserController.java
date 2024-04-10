@@ -3,7 +3,7 @@ package by.pack.controller;
 import by.pack.dto.LoginDto;
 import by.pack.dto.RegUserDto;
 import by.pack.entity.SessionUser;
-import by.pack.libraryBook.LibraryBooks;
+import by.pack.service.BookService;
 import by.pack.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private LibraryBooks libraryBooks;
+    private BookService bookService;
 
     @Autowired
     private UserService userService;
@@ -65,7 +65,7 @@ public class UserController {
         Optional<SessionUser> sessionUser = userService.login(loginDto);
         if (sessionUser.isPresent()) {
             httpSession.setAttribute("userSession", sessionUser.get());
-            libraryBooks.saveBook();
+            bookService.saveBook();
             return "redirect:/";
         } else {
             model.addAttribute("loginError", "Login or password is wrong, try again");

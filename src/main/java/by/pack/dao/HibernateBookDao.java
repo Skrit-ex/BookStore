@@ -1,7 +1,6 @@
 package by.pack.dao;
 
 import by.pack.entity.Book;
-import by.pack.libraryBook.LibraryBooks;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
