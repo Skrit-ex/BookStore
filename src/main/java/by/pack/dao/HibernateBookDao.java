@@ -14,8 +14,6 @@ import java.util.Optional;
 @Component
 public class HibernateBookDao {
 
-    @Autowired
-    private LibraryBooks libraryBooks;
 
     @Autowired
     private SessionFactory sessionFactory;

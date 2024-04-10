@@ -13,47 +13,104 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #525151;">
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Number</th>
-        <th scope="col">Book</th>
-        <th scope="col">NameAuthor</th>
-        <th scope="col">LastNameAuthor</th>
-        <th scope="col">Genre</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>${nameBook1}</td>
-        <td>${nameBook2}</td>
-        <td>${nameBook3}</td>
-        <td>${nameBook4}</td>
-        <td>${nameBook5}</td>
-    </tr>
+<jsp:include page="home.jsp"/>
+<div class="container text-center">
+    <div class="row align-items-end">
+        <div class="col">
+            NameBook
+        </div>
+        <div class="col">
+            NameAuthor
+        </div>
+        <div class="col">
+            LastNameAuthor
+        </div>
+        <div class="col">
+            Genre
+        </div>
+        <div class="col">
+            Description
+        </div>
+    </div>
 
-    <tr>
-        <th scope="row">2</th>
-        <td>${author1}</td>
-        <td>${author2}</td>
-        <td>${author2}</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">4</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
-</table>
+    <br>
+
+<div class="container text-center">
+    <div class="row align-items-end">
+        <div class="col">
+            Atlas Shrugged
+        </div>
+        <div class="col">
+            Ayn
+        </div>
+        <div class="col">
+           Rand
+        </div>
+        <div class="col">
+            novel
+        </div>
+        <div class="col">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false"
+                            aria-controls="flush-collapseOne" style="color: cornflowerblue">
+                        Description
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The main idea of the novel is that the main engine of progress
+                        is creative people with a pronounced ego. The main character of the novel is the talented
+                        architect <code> Howard Roark </code>, a staunch individualist whose mission is to create
+                        and transform the world. Roark defends the freedom of a creative person, refuses to compromise
+                        and deviate from his own life and professional standards.
+                </div>
+            </div>
+        </div>
+</div>
+
+    <br>
+
+    <div class="container text-center">
+        <div class="row align-items-end">
+            <div class="col">
+                The Fountainhead
+            </div>
+            <div class="col">
+                Ayn
+            </div>
+            <div class="col">
+                Rand
+            </div>
+            <div class="col">
+                novel
+            </div>
+            <div class="col">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne" style="color: cornflowerblue">
+                            Description
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">The novel describes a dystopian United States of America in which
+                            private business suffers from regulatory government policies. Railroad manager
+                            <code> Dagny Taggert </code>
+                            and her lover, steel magnate Hank Rearden, are trying to build their business without following
+                            the orders of government officials, who are considered "bandits." There are a number of
+                            mysterious disappearances of entrepreneurs, prominent specialists and artists.</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
