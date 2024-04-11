@@ -7,13 +7,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setAttribute("pageName", "library"); %>
 <html>
 <head>
     <title>Library</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body style="background-color: #525151;">
+<body style="background-color: #a4a3a3;">
 
 <jsp:include page="home.jsp"/>
 <div class="container text-center">
@@ -34,6 +35,7 @@
             Description
         </div>
     </div>
+</div>
 
     <br>
 
@@ -56,7 +58,7 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne" aria-expanded="false"
-                            aria-controls="flush-collapseOne" style="color: cornflowerblue">
+                            aria-controls="flush-collapseOne" style="color: #918e76">
                         Description
                     </button>
                 </h2>
@@ -67,14 +69,16 @@
                         architect <code> Howard Roark </code>, a staunch individualist whose mission is to create
                         and transform the world. Roark defends the freedom of a creative person, refuses to compromise
                         and deviate from his own life and professional standards.
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 
     <br>
 
-    <div class="container text-center">
+<div class="container text-center">
         <div class="row align-items-end">
             <div class="col">
                 The Fountainhead
@@ -88,13 +92,13 @@
             <div class="col">
                 novel
             </div>
+
             <div class="col">
-                <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne" style="color: cornflowerblue">
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo" style="color: #918e76">
                             Description
                         </button>
                     </h2>
@@ -105,12 +109,14 @@
                             <code> Dagny Taggert </code>
                             and her lover, steel magnate Hank Rearden, are trying to build their business without following
                             the orders of government officials, who are considered "bandits." There are a number of
-                            mysterious disappearances of entrepreneurs, prominent specialists and artists.</div>
+                            mysterious disappearances of entrepreneurs, prominent specialists and artists.
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -50,6 +50,13 @@
             <a class="nav-link disabled">Hello Guest</a>
           </c:if>
 
+          <c:if test="${pageName == 'library'}">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </c:if>
+
         </li>
       </div>
     </div>
