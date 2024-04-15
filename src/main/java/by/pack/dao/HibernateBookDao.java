@@ -55,7 +55,7 @@ public class HibernateBookDao {
     @Transactional(readOnly = true)
     public Optional<Book> findByNameBook(String nameBook){
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Book> queryBook = currentSession.createQuery("from Book where nameBook= : nameBook", Book.class);
+        Query<Book> queryBook = currentSession.createQuery("from Book where nameBook=:nameBook", Book.class);
         queryBook.setParameter("nameBook", nameBook);
         try {
             return Optional.of(queryBook.getSingleResult());
