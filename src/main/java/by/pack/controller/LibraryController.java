@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -28,14 +30,19 @@ public class LibraryController {
 
     @GetMapping
     public String library(Model model){
-        model.addAttribute("newUser", new RegUserDto());
+        model.addAttribute("newBook", new BookDto());
         return "library";
     }
 
     @PostMapping
-    public String library(BindingResult bindingResult, Model model, @Valid BookDto bookDto){
-        Optional<Book> book = Optional.of(BookMapper.bookDtoToBook(bookDto));
-        model.addAttribute("author",  book.get().getNameAuthor() );
+    public String library(@ModelAttribute("newBook") @Valid BookDto bookDto,
+                          BindingResult bindingResult,
+                          HttpSession httpSession,
+                          Model model){
+        if(bindingResult.hasErrors()){
+            return "library";
+        }
+
         return "library";
     }
 }
