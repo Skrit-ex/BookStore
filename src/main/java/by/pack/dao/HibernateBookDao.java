@@ -6,11 +6,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.NoResultException;
 import java.util.Optional;
 
 @Component
+@Configuration
 public class HibernateBookDao {
 
 
@@ -18,6 +22,7 @@ public class HibernateBookDao {
     private SessionFactory sessionFactory;
 
 
+    @Transactional(readOnly = true)
     public void save(Book book){
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -35,6 +40,7 @@ public class HibernateBookDao {
         }
     }
 
+    @Transactional
     public Optional<Book> findByAuthor(String nameAuthor){
         Session currentSession = sessionFactory.getCurrentSession();
         Query<Book> queryBook = currentSession.createQuery("from Book where nameAuthor = : nameAuthor", Book.class);
@@ -46,6 +52,7 @@ public class HibernateBookDao {
         }
     }
 
+    @Transactional(readOnly = true)
     public Optional<Book> findByNameBook(String nameBook){
         Session currentSession = sessionFactory.getCurrentSession();
         Query<Book> queryBook = currentSession.createQuery("from Book where nameBook= : nameBook", Book.class);

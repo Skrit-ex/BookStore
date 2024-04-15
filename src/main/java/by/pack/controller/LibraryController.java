@@ -1,5 +1,6 @@
 package by.pack.controller;
 
+import by.pack.dao.HibernateBookDao;
 import by.pack.dto.BookDto;
 import by.pack.dto.RegUserDto;
 import by.pack.entity.Book;
@@ -27,6 +28,9 @@ public class LibraryController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private HibernateBookDao hibernateBookDao;
+
 
     @GetMapping
     public String library(Model model){
@@ -42,7 +46,15 @@ public class LibraryController {
         if(bindingResult.hasErrors()){
             return "library";
         }
-
-        return "library";
+        Optional<Book> byNameBook = hibernateBookDao.findByNameBook(bookDto.getNameBook());
+        if(byNameBook.isPresent()) {
+            Book currentBook = byNameBook.get();
+            System.out.println(currentBook.getNameBook());
+            httpSession.setAttribute("nameBook", byNameBook.get());
+            return "redirect:/library";
+        }else {
+            model.addAttribute("errorBook", "Try again");
+            return "library";
+        }
     }
 }

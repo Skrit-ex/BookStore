@@ -17,7 +17,7 @@
 <body style="background-color: #a4a3a3;">
 
 <jsp:include page="home.jsp"/>
-<div class="container text-center">
+<div class="container text-center" style="text-decoration-color: darkblue">
     <div class="row align-items-end">
         <div class="col">
             NameBook
@@ -39,10 +39,10 @@
 
     <br>
 
-<div class="container text-center">
+<div class="container text-center" modelAttribute="newBook">
     <div class="row align-items-end">
         <div class="col">
-            Atlas Shrugged
+            ${sessionScope.name.nameBook}
         </div>
         <div class="col">
             Ayn
