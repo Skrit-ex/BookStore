@@ -65,7 +65,7 @@ public class UserController {
         Optional<SessionUser> sessionUser = userService.login(loginDto);
         if (sessionUser.isPresent()) {
             httpSession.setAttribute("userSession", sessionUser.get());
-            //bookService.saveBook();
+            bookService.saveBook();
             return "redirect:/";
         } else {
             model.addAttribute("loginError", "Login or password is wrong, try again");

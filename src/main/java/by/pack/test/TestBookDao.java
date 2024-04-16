@@ -13,13 +13,20 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HibernateBookTest {
-
+public class TestBookDao {
     @Autowired
     private HibernateBookDao hibernateBookDao;
 
-    public void initializerHibernateBookDao(){
-        this.hibernateBookDao= new HibernateBookDao();
+
+    @Test
+    public void testFindByAuthor(){
+        BookDto bookDto = new BookDto();
+        bookDto.setNameAuthor("Tammy");
+        Optional<Book> bookOptional = hibernateBookDao.findByAuthor(bookDto.getNameAuthor());
+        if(bookOptional.isPresent()){
+            Book book1 = bookOptional.get();
+            System.out.println(book1.getNameAuthor());
+        }
     }
     @Test
     public void testFindByNameBook() {
@@ -28,7 +35,9 @@ public class HibernateBookTest {
         Optional<Book> byNameBook = hibernateBookDao.findByNameBook(bookDto.getNameBook());
         if (byNameBook.isPresent()) {
             Book book = byNameBook.get();
-            System.out.println(book);
+            System.out.println(book.getNameBook());
+        }else {
+            System.out.println("Your book isn't correct or not exist");
         }
     }
 }
