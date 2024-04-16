@@ -14,7 +14,6 @@ import javax.persistence.NoResultException;
 import java.util.Optional;
 
 @Component
-@Configuration
 public class HibernateBookDao {
 
 
