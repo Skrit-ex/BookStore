@@ -4,6 +4,7 @@ import by.pack.configuration.WebConfiguration;
 import by.pack.dao.HibernateUserDao;
 import by.pack.dto.RegUserDto;
 import by.pack.entity.User;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,13 @@ import java.util.logging.Logger;
 @SpringBootTest(classes = WebConfiguration.class)
 public class TestUserDao {
 
-    @Autowired
+
     private HibernateUserDao hibernateUserDao;
+
+    @Before
+    public void setup(){
+        hibernateUserDao = new HibernateUserDao();
+    }
 
     private final static Logger LOGGER = Logger.getLogger(TestUserDao.class.getName());
 
