@@ -14,10 +14,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body style="background-color: #a4a3a3;">
+<body style="background-color: #a4a3a3" >
 
 <jsp:include page="home.jsp"/>
-<div class="container text-center" style="text-decoration-color: darkblue">
+<div class="container text-center color=red">
     <div class="row align-items-end">
         <div class="col">
             NameBook
