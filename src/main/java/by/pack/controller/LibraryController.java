@@ -2,9 +2,7 @@ package by.pack.controller;
 
 import by.pack.dao.HibernateBookDao;
 import by.pack.dto.BookDto;
-import by.pack.dto.RegUserDto;
 import by.pack.entity.Book;
-import by.pack.mapper.BookMapper;
 import by.pack.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,7 +44,7 @@ public class LibraryController {
         if(bindingResult.hasErrors()){
             return "library";
         }
-        Optional<Book> byNameBook = hibernateBookDao.findByNameBook(bookDto.getNameBook());
+        Optional<Book> byNameBook = hibernateBookDao.findByBookName(bookDto.getNameBook());
         if(byNameBook.isPresent()) {
             Book currentBook = byNameBook.get();
             System.out.println(currentBook.getNameBook());

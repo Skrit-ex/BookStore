@@ -2,9 +2,7 @@ package by.pack.controller;
 
 import by.pack.dao.HibernateBookDao;
 import by.pack.entity.Book;
-import by.pack.entity.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,7 +31,7 @@ public class FileController {
                     String lastNameAuthor = data [2];
                     String genre = data[3];
                     Book book = new Book(nameBook,nameAuthor,lastNameAuthor,genre);
-                    hibernateBookDao.save(book);
+                    //hibernateBookDao.save(book);
                 }
             }
             bufferedReader.close();

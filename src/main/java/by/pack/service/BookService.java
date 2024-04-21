@@ -33,7 +33,7 @@ public class BookService {
                         String genre = data[3];
                         Book book = new Book(nameBook, nameAuthor, lastNameAuthor, genre);
                         System.out.println(book);
-                        hibernateBookDao.save(book);
+                        //hibernateBookDao.save(book);
                         //inputStreamReader.close();
                     }
                 }

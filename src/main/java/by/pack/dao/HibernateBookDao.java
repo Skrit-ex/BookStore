@@ -3,7 +3,6 @@ package by.pack.dao;
 import by.pack.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,53 +15,42 @@ import java.util.Optional;
 public class HibernateBookDao {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
 
     @Transactional
-    public void save(Book book){
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try{
-            transaction= session.beginTransaction();
-            session.save(book);
-            transaction.commit();
-        }catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    @Transactional
-    public Optional<Book> findByAuthor(String nameAuthor){
+    public Optional<Book> findByBookName(String nameBook) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Book> queryBook = currentSession.createQuery("from Book where nameAuthor = : nameAuthor", Book.class);
-        queryBook.setParameter("nameAuthor", nameAuthor);
-        try{
-            return Optional.of(queryBook.getSingleResult());
-        }catch (NoResultException e){
-            return Optional.empty();
-        }
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Book> findByNameBook(String nameBook){
-        Session sessionBook = sessionFactory.getCurrentSession();
-        Query<Book> queryBook = sessionBook.createQuery("from Book where nameBook=:nameBook", Book.class);
-        queryBook.setParameter("nameBook", nameBook);
+        Query<Book> bookQuery = currentSession.createQuery("from Book where nameBook =: nameBook", Book.class);
+        bookQuery.setParameter("nameBook", nameBook);
         try {
-            return Optional.of(queryBook.getSingleResult());
-        }catch (NoResultException e){
+            return Optional.of(bookQuery.getSingleResult());
+        } catch (NoResultException e) {
             return Optional.empty();
         }
     }
 
-    public Book findById(Long id){
+    @Transactional
+    public Optional<Book> findByNameAuthor(String nameAuthor) {
         Session currentSession = sessionFactory.getCurrentSession();
-        return currentSession.get(Book.class, id);
+        Query<Book> bookQuery = currentSession.createQuery("from Book where nameAuthor =: nameAuthor", Book.class);
+        bookQuery.setParameter("nameAuthor", nameAuthor);
+        try {
+            return Optional.of(bookQuery.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Transactional
+    public Optional<Book> findByGenre(String genre){
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<Book> bookQuery = currentSession.createQuery("from Book where genre =: genre", Book.class);
+        bookQuery.setParameter("genre", genre);
+        try {
+            return Optional.of(bookQuery.getSingleResult());
+        }catch (NoResultException e){
+            return Optional.empty();
+        }
     }
 }
