@@ -42,7 +42,7 @@
 <div class="container text-center" modelAttribute="newBook">
     <div class="row align-items-end">
         <div class="col">
-            ${sessionScope.name.nameBook}
+            ${nameBook}
         </div>
         <div class="col">
             Ayn

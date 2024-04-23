@@ -33,26 +33,25 @@ public class LibraryController {
     @GetMapping
     public String library(Model model){
         model.addAttribute("newBook", new BookDto());
+        Book book1 = bookService.bookInfo;
+        String bookName = book1.getNameBook();
+        System.out.println(bookName);
+        model.addAttribute("nameBook", bookName);
         return "library";
     }
 
     @PostMapping
-    public String library(@ModelAttribute("newBook") @Valid BookDto bookDto,
+    public String library(@ModelAttribute("newBook") BookDto bookDto,
                           BindingResult bindingResult,
                           HttpSession httpSession,
-                          Model model){
-        if(bindingResult.hasErrors()){
+                          Model model) {
+        if (bindingResult.hasErrors()) {
             return "library";
         }
-        Optional<Book> byNameBook = hibernateBookDao.findByBookName(bookDto.getNameBook());
-        if(byNameBook.isPresent()) {
-            Book currentBook = byNameBook.get();
-            System.out.println(currentBook.getNameBook());
-            httpSession.setAttribute("nameBook", byNameBook.get());
-            return "redirect:/library";
-        }else {
-            model.addAttribute("errorBook", "Try again");
-            return "library";
-        }
+
+
+
+
+        return "library";
     }
 }

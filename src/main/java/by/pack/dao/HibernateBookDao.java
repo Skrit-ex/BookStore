@@ -3,12 +3,14 @@ package by.pack.dao;
 import by.pack.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
+
 import java.util.Optional;
 
 @Component
@@ -44,8 +46,8 @@ public class HibernateBookDao {
 
     @Transactional
     public Optional<Book> findByGenre(String genre){
-        Session currentSession = sessionFactory.getCurrentSession();
-        Query<Book> bookQuery = currentSession.createQuery("from Book where genre =: genre", Book.class);
+        Session currentSessionGenre = sessionFactory.getCurrentSession();
+        Query<Book> bookQuery = currentSessionGenre.createQuery("from Book where genre =: genre", Book.class);
         bookQuery.setParameter("genre", genre);
         try {
             return Optional.of(bookQuery.getSingleResult());
@@ -53,4 +55,32 @@ public class HibernateBookDao {
             return Optional.empty();
         }
     }
+
+    @Transactional
+    public void save(Book book){
+            Session session = sessionFactory.openSession();
+            Transaction transaction = null;
+            try{
+                transaction= session.beginTransaction();
+                session.save(book);
+                transaction.commit();
+            }catch (Exception e) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+    }
+
+//        public Book findById(Long id){
+//        Session session = sessionFactory.getCurrentSession();
+//        Query<Book> bookQuery = session.createQuery("select Book where id =: id", Book.class);
+//            ResultSet resultSet = session.createQuery("select Book where id =: id",Book.class);
+//        bookQuery.
+//        bookQuery.setParameter("id", id);
+//        return bookQuery.getSingleResult();
+//    }
+//
 }
