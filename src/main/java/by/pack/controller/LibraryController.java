@@ -9,13 +9,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,27 +29,33 @@ public class LibraryController {
 
 
     @GetMapping
-    public String library(Model model){
-        model.addAttribute("newBook", new BookDto());
-        Book book1 = bookService.bookInfo;
-        String bookName = book1.getNameBook();
-        System.out.println(bookName);
-        model.addAttribute("nameBook", bookName);
-        return "library";
-    }
+    public String library( Model model) {
+        List<Book> books = hibernateBookDao.findAll();
 
-    @PostMapping
-    public String library(@ModelAttribute("newBook") BookDto bookDto,
-                          BindingResult bindingResult,
-                          HttpSession httpSession,
-                          Model model) {
-        if (bindingResult.hasErrors()) {
+        model.addAttribute("books", books);
+
+//        for (Book book : books) {
+//
+////       Book book = hibernateBookDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid argument " +
+////                "book Id :" + id));
+//
+//            String nameBook = book.getNameBook();
+//            String nameAuthor = book.getNameAuthor();
+//            String lastNameAuthor = book.getLastNameAuthor();
+//            String genre = book.getGenre();
+//
+//            model.addAttribute("nameBook", nameBook);
+//            model.addAttribute("nameAuthor", nameAuthor);
+//            model.addAttribute("lastNameAuthor", lastNameAuthor);
+//            model.addAttribute("genre", genre);
+//        }
+//        model.addAttribute("newBook", new BookDto());
+//        Book book1 = bookService.bookInfo;
+//        String bookName = book1.getNameBook();
+//        System.out.println(bookName);
+//        model.addAttribute("nameBook", bookName);
+
             return "library";
         }
 
-
-
-
-        return "library";
-    }
 }

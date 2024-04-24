@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -74,13 +75,21 @@ public class HibernateBookDao {
             }
     }
 
-//        public Book findById(Long id){
-//        Session session = sessionFactory.getCurrentSession();
-//        Query<Book> bookQuery = session.createQuery("select Book where id =: id", Book.class);
-//            ResultSet resultSet = session.createQuery("select Book where id =: id",Book.class);
-//        bookQuery.
-//        bookQuery.setParameter("id", id);
-//        return bookQuery.getSingleResult();
-//    }
-//
+    @Transactional
+        public Optional<Book> findById(Long id) {
+            Session session = sessionFactory.getCurrentSession();
+            Query<Book> bookQuery = session.createQuery("select Book where id =: id", Book.class);
+            bookQuery.setParameter("id", id);
+            try {
+                return Optional.of(bookQuery.getSingleResult());
+            } catch (NoResultException e) {
+                return Optional.empty();
+            }
+        }
+
+        @Transactional
+        public List<Book> findAll(){
+            Session session = sessionFactory.getCurrentSession();
+            return session.createQuery("from Book", Book.class).getResultList();
+        }
 }

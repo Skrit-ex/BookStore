@@ -39,19 +39,24 @@
 
     <br>
 
-<div class="container text-center" modelAttribute="newBook">
+<c:forEach var="book" items="${books}">
+
+<div class="container text-center" >
     <div class="row align-items-end">
+
+
+
         <div class="col">
-            ${nameBook}
+            ${book.nameBook}
         </div>
         <div class="col">
-            Ayn
+            ${book.nameAuthor}
         </div>
         <div class="col">
-           Rand
+            ${book.lastNameAuthor}
         </div>
         <div class="col">
-            novel
+            ${book.genre}
         </div>
         <div class="col">
             <div class="accordion-item">
@@ -77,45 +82,7 @@
 </div>
 
     <br>
-
-<div class="container text-center">
-        <div class="row align-items-end">
-            <div class="col">
-                The Fountainhead
-            </div>
-            <div class="col">
-                Ayn
-            </div>
-            <div class="col">
-                Rand
-            </div>
-            <div class="col">
-                novel
-            </div>
-
-            <div class="col">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                aria-controls="flush-collapseTwo" style="color: #918e76">
-                            Description
-                        </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">The novel describes a dystopian United States of America in which
-                            private business suffers from regulatory government policies. Railroad manager
-                            <code> Dagny Taggert </code>
-                            and her lover, steel magnate Hank Rearden, are trying to build their business without following
-                            the orders of government officials, who are considered "bandits." There are a number of
-                            mysterious disappearances of entrepreneurs, prominent specialists and artists.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</c:forEach>
 
 
 
