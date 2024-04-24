@@ -44,4 +44,33 @@ public class BookService {
             throw new RuntimeException(e);
         }
     }
+
+    public void saveDescription() {
+        InputStreamReader inputStreamReader = new InputStreamReader
+                (Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("BookDescription")));
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String text = "";
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    text += line + "\n";
+                } else {
+                    Book book = new Book();
+                    book.setDescription(text);
+                    hibernateBookDao.save(book);
+                    text = "";
+                }
+            }
+            if (text.isEmpty()) {
+                Book book = new Book();
+                book.setDescription(text);
+                hibernateBookDao.save(book);
+            }
+            bufferedReader.close();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

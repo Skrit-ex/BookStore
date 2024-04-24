@@ -44,8 +44,6 @@
 <div class="container text-center" >
     <div class="row align-items-end">
 
-
-
         <div class="col">
             ${book.nameBook}
         </div>
@@ -62,19 +60,14 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                            aria-controls="flush-collapseOne" style="color: #918e76">
+                            data-bs-target="#flush-collapse${book.id}" aria-expanded="false"
+                            aria-controls="flush-collapse${book.id}" style="color: #918e76">
                         Description
                     </button>
                 </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                <div id="flush-collapse${book.id}" class="accordion-collapse collapse"
                      data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The main idea of the novel is that the main engine of progress
-                        is creative people with a pronounced ego. The main character of the novel is the talented
-                        architect <code> Howard Roark </code>, a staunch individualist whose mission is to create
-                        and transform the world. Roark defends the freedom of a creative person, refuses to compromise
-                        and deviate from his own life and professional standards.
-                    </div>
+                    <div class="accordion-body">${book.description}</div>
                 </div>
             </div>
         </div>
