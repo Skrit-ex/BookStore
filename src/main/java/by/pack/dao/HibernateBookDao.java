@@ -76,16 +76,35 @@ public class HibernateBookDao {
     }
 
     @Transactional
-        public Optional<Book> findById(Long id) {
-            Session session = sessionFactory.getCurrentSession();
-            Query<Book> bookQuery = session.createQuery("select Book where id =: id", Book.class);
-            bookQuery.setParameter("id", id);
-            try {
-                return Optional.of(bookQuery.getSingleResult());
-            } catch (NoResultException e) {
-                return Optional.empty();
+    public void update(Book book){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(book);
+            transaction.commit();
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
             }
+            throw new RuntimeException("Error with update : " + e.getMessage());
+        } finally {
+            session.close();
         }
+    }
+
+    public Book findByLineCount(Long id) {
+        Session session = sessionFactory.openSession();
+        try {
+            Query<Book> query = session.createQuery("FROM Book WHERE id = :id", Book.class);
+            query.setParameter("id", id);
+            return query.uniqueResult(); // Возвращает найденную книгу или null
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка при поиске книги: " + e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
 
         @Transactional
         public List<Book> findAll(){

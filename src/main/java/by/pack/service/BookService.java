@@ -73,4 +73,40 @@ public class BookService {
             throw new RuntimeException(ex);
         }
     }
+
+
+    public void saveDescriptionDemo(){
+        InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
+                getResourceAsStream("BookDescription")));
+        try {
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String text= "";
+            String line;
+            Long id = Long.valueOf(0);
+            while ((line = bufferedReader.readLine()) != null){
+                if(!line.trim().isEmpty()){
+                    text += line + " ";
+                }else {
+                    Book book = hibernateBookDao.findByLineCount(++id);
+                    if(book != null){
+                        book.setDescription(text.trim());
+                        hibernateBookDao.update(book);
+                    }
+                    text = "";
+                }
+            }
+
+            if(!text.isEmpty()) {
+                Book book = hibernateBookDao.findByLineCount(++id);
+                if (book != null) {
+                    book.setDescription(text);
+                    hibernateBookDao.update(book);
+                }
+            }
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+        }
+    }
+
 }
