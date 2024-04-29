@@ -33,7 +33,8 @@ public class BookService {
                         String nameAuthor = data[1];
                         String lastNameAuthor = data[2];
                         String genre = data[3];
-                        bookInfo = new Book(nameBook, nameAuthor, lastNameAuthor, genre);
+                        String description = saveDescription();
+                        bookInfo = new Book(nameBook, nameAuthor, lastNameAuthor, genre, description);
                         hibernateBookDao.save(bookInfo);
                     }
                 }
@@ -45,20 +46,24 @@ public class BookService {
         }
     }
 
-    public String saveDescription(){
+    public String saveDescription() {
         InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
                 getResourceAsStream("BookDescription")));
-        try{
+        try {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String text = "";
             String line = String.valueOf(0);
-            while ((line = bufferedReader.readLine()) != null){
-                if(!(line.trim().isEmpty())){
+            while ((line = bufferedReader.readLine()) != null) {
+                if (!(line.trim().isEmpty())) {
                     text += line + " ";
-                Book book = new Book();
-                book.setDescription(text);
+                    bookInfo = new Book();
+                    bookInfo.setDescription(text);
+                }
             }
+        } catch (IOException ex) {
+            throw new RuntimeException();
         }
+        return bookInfo.getDescription();
     }
 
 

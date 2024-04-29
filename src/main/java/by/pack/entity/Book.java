@@ -32,10 +32,12 @@ public class Book {
 
     private String description;
 
-    public Book(String nameBook, String nameAuthor, String lastNameAuthor, String genre) {
+    public Book(String nameBook, String nameAuthor, String lastNameAuthor, String genre, String description) {
         this.nameBook = nameBook;
         this.nameAuthor = nameAuthor;
         this.lastNameAuthor = lastNameAuthor;
         this.genre = genre;
+        this.description = description;
     }
 }
+

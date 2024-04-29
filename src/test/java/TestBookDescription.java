@@ -19,6 +19,6 @@ public class TestBookDescription {
 
     @Test
     public void testDescription(){
-        bookService.saveDescriptionDemo();
+       bookService.saveDescription();
     }
 }
