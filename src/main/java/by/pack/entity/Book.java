@@ -38,8 +38,4 @@ public class Book {
         this.lastNameAuthor = lastNameAuthor;
         this.genre = genre;
     }
-
-    public Book(String description) {
-        this.description = description;
-    }
 }

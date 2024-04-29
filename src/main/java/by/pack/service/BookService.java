@@ -45,67 +45,62 @@ public class BookService {
         }
     }
 
-    public void saveDescription() {
-        InputStreamReader inputStreamReader = new InputStreamReader
-                (Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("BookDescription")));
-
-        try {
+    public String saveDescription(){
+        InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
+                getResourceAsStream("BookDescription")));
+        try{
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String text = "";
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    text += line + "\n";
-                } else {
-                    Book book = new Book();
-                    book.setDescription(text);
-                    hibernateBookDao.save(book);
-                    text = "";
-                }
-            }
-            if (text.isEmpty()) {
+            String line = String.valueOf(0);
+            while ((line = bufferedReader.readLine()) != null){
+                if(!(line.trim().isEmpty())){
+                    text += line + " ";
                 Book book = new Book();
                 book.setDescription(text);
-                hibernateBookDao.save(book);
             }
-            bufferedReader.close();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
         }
     }
 
 
-    public void saveDescriptionDemo(){
-        InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
-                getResourceAsStream("BookDescription")));
-        try {
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String text= "";
-            String line;
-            Long id = Long.valueOf(0);
-            while ((line = bufferedReader.readLine()) != null){
-                if(!line.trim().isEmpty()){
-                    text += line + " ";
-                }else {
-                    Book book = hibernateBookDao.findByLineCount(++id);
-                    if(book != null){
-                        book.setDescription(text.trim());
-                        hibernateBookDao.update(book);
-                    }
-                    text = "";
-                }
-            }
-
-            if(!text.isEmpty()) {
-                Book book = hibernateBookDao.findByLineCount(++id);
-                if (book != null) {
-                    book.setDescription(text);
-                    hibernateBookDao.update(book);
-                }
-            }
-                    bufferedReader.close();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+//    public void saveDescriptionDemo(){
+//        InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
+//                getResourceAsStream("BookDescription")));
+//        try {
+//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//            String text= "";
+//            String line;
+//            Long id = Long.valueOf(0);
+//            while ((line = bufferedReader.readLine()) != null){
+//                if(!line.trim().isEmpty()){
+//                    text += line + " ";
+//                }else {
+//                    Book book = hibernateBookDao.findByLineCount(++id);
+//                    if(book != null){
+//                        book.setDescription(text.trim());
+//                        hibernateBookDao.update(book);
+//                    }
+//                    text = "";
+//                }
+//            }
+//
+//            if(!text.isEmpty()) {
+//                Book book = hibernateBookDao.findByLineCount(++id);
+//                if (book != null) {
+//                    book.setDescription(text);
+//                    hibernateBookDao.update(book);
+//                }
+//            }
+//                    bufferedReader.close();
+//                } catch (IOException ex) {
+//                    throw new RuntimeException(ex);
+//        }
+//    }
+    public void addDescriptionToBook(Long id, String description){
+        Book book = hibernateBookDao.findByLineCount(id);
+        if(book != null){
+            book.setDescription(description);
+        }else {
+            System.out.println("id or Book not found");
         }
     }
 
