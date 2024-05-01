@@ -1,18 +1,14 @@
 package by.pack.controller;
 
 import by.pack.dao.HibernateBookDao;
-import by.pack.dto.BookDto;
 import by.pack.entity.Book;
 import by.pack.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +52,17 @@ public class LibraryController {
 //        model.addAttribute("nameBook", bookName);
 
             return "library";
+        }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("nameBook") String nameBook,
+                         @RequestParam("nameAuthor") String nameAuthor,
+                         @RequestParam("lastNameAuthor") String lastNameAuthor, Model model){
+        Optional<Book> books = hibernateBookDao.findByBookName(nameBook);
+        model.addAttribute("nameBook", nameBook);
+        Optional<Book> author = hibernateBookDao.findByNameAuthor(nameAuthor);
+        model.addAttribute("nameAuthor", nameAuthor);
+        return "library";
         }
 
 }

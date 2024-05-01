@@ -33,7 +33,7 @@ public class BookService {
                         String nameAuthor = data[1];
                         String lastNameAuthor = data[2];
                         String genre = data[3];
-                        String description = saveDescription();
+                        String description = readAndSaveDescription();
                         bookInfo = new Book(nameBook, nameAuthor, lastNameAuthor, genre, description);
                         hibernateBookDao.save(bookInfo);
                     }
@@ -46,7 +46,7 @@ public class BookService {
         }
     }
 
-    public String saveDescription() {
+    public String readAndSaveDescription() {
         InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().
                 getResourceAsStream("BookDescription")));
         try {
