@@ -57,11 +57,19 @@ public class LibraryController {
     @GetMapping("/search")
     public String search(@RequestParam("nameBook") String nameBook,
                          @RequestParam("nameAuthor") String nameAuthor,
-                         @RequestParam("lastNameAuthor") String lastNameAuthor, Model model){
-        Optional<Book> books = hibernateBookDao.findByBookName(nameBook);
-        model.addAttribute("nameBook", nameBook);
-        Optional<Book> author = hibernateBookDao.findByNameAuthor(nameAuthor);
-        model.addAttribute("nameAuthor", nameAuthor);
+                          Model model){
+        if(nameBook != null && !nameBook.isEmpty() ){
+            Optional<Book> books = hibernateBookDao.findByBookName(nameBook);
+            if (books.isPresent()) {
+                model.addAttribute("nameBook", books.get());
+            }
+        }
+        if(nameAuthor != null && !nameAuthor.isEmpty()) {
+            Optional<Book> author = hibernateBookDao.findByNameAuthor(nameAuthor);
+            if (author.isPresent()) {
+                model.addAttribute("nameAuthor", author.get());
+            }
+        }
         return "library";
         }
 
