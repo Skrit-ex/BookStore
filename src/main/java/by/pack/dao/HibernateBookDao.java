@@ -98,7 +98,7 @@ public class HibernateBookDao {
         try {
             Query<Book> query = session.createQuery("FROM Book WHERE id = :id", Book.class);
             query.setParameter("id", id);
-            return query.uniqueResult(); // Возвращает найденную книгу или null
+            return query.uniqueResult(); // Return book or null
         } catch (Exception e) {
             throw new RuntimeException("Ошибка при поиске книги: " + e.getMessage());
         } finally {

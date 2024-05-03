@@ -14,7 +14,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body body style="background-color: #525151;">
+<body body style="background-color: #b6b2b2;">
 
 <nav class="navbar navbar-expand-lg bg-dark p2 " style="--bs-bg-opacity: .3;">
   <div class="container-fluid">
