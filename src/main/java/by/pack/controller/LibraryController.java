@@ -4,7 +4,6 @@ import by.pack.dao.HibernateBookDao;
 import by.pack.dto.BookDto;
 import by.pack.entity.Book;
 import by.pack.service.BookService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,21 +83,21 @@ public class LibraryController {
     @GetMapping("/adBook")
     public String adBook(Model model){
         model.addAttribute("adNewBook", new BookDto());
-        return "library";
+        return "adBook";
     }
 
     @PostMapping("/adBook")
-    public String adBook(@ModelAttribute("BookDto") @Valid BookDto bookDto,
+    public String adBook(@ModelAttribute("adNewBook") @Valid BookDto bookDto,
                          BindingResult bindingResult,
                          Model model){
         if(bindingResult.hasErrors()){
-            return "library";
+            return "adBook";
         }
         try {
-            bookService.saveBook();
+            bookService.save(bookDto);
         }catch (ConstraintDeclarationException e){
             model.addAttribute("errorBook", "You entered error Book, try again");
-            return "library";
+            return "adBook";
         }
         return "redirect:/home";
     }

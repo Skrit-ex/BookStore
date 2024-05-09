@@ -17,6 +17,8 @@
 <body style="background-color: #d3cfcf" >
 
 <jsp:include page="home.jsp"/>
+
+<a href="/library/adBook"> Ad new Book </a>
 <div class="container text-center color=red">
     <div class="row align-items-end">
         <div class="col">
