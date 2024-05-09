@@ -22,7 +22,7 @@ public class BookDto {
     @Pattern(regexp = "(\\b[а-яА-Яa-zA-Z]+\\b)", message = "The genre isn't correct, try again")
     private String genre;
 
-    @Pattern(regexp = "([А-Яа-я][^.!?]*[.!?])*" , message = "Check your description")
+    @Pattern(regexp = "([А-ЯA-Z][^.!?]*)" , message = "Check your description")
     private String description;
 
     private Long UserId;

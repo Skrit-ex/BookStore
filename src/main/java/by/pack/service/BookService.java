@@ -22,7 +22,7 @@ public class BookService {
 
     public void save(BookDto bookDto){
         Book book = BookMapper.bookDtoToBook(bookDto);
-        hibernateBookDao.save(book);
+        hibernateBookDao.saveAddBook(book);
     }
 
     public void saveBook() {

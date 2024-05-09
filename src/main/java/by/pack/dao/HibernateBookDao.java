@@ -20,6 +20,12 @@ public class HibernateBookDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
+    public void saveAddBook(Book book){
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.save(book);
+    }
+
 
     @Transactional
     public Optional<Book> findByBookName(String nameBook) {

@@ -99,7 +99,7 @@ public class LibraryController {
             model.addAttribute("errorBook", "You entered error Book, try again");
             return "adBook";
         }
-        return "redirect:/home";
+        return "redirect:/";
     }
 
 }
