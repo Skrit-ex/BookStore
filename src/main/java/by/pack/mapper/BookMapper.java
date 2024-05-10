@@ -2,7 +2,6 @@ package by.pack.mapper;
 
 import by.pack.dto.BookDto;
 import by.pack.entity.Book;
-
 public class BookMapper {
 
     public static Book bookDtoToBook (BookDto bookDto){
