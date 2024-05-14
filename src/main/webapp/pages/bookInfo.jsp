@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<h1>${book.title}</h1>
-<p>Автор: ${book.author}</p>
+<h1>${book.nameBook}</h1>
+<p>Автор: ${book.nameAuthor}</p>
 <p>Описание: ${book.description}</p>
 <br>
 <a href="/library">Вернуться в библиотеку</a>

@@ -4,25 +4,16 @@ import by.pack.dao.HibernateBookDao;
 import by.pack.dto.BookDto;
 import by.pack.entity.Book;
 import by.pack.service.BookService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import javax.validation.ConstraintDeclarationException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 @Controller
 @RequestMapping("/library")
@@ -65,21 +56,6 @@ public class LibraryController {
             return "library";
         }
 
-    @GetMapping("/search")
-    public String search(@RequestParam("nameBook") String nameBook,
-                         @RequestParam("nameAuthor") String nameAuthor,
-                          Model model){
-        if(nameBook != null && !nameBook.isEmpty() ){
-            Optional<Book> books = hibernateBookDao.findByBookName(nameBook);
-            books.ifPresent(book -> model.addAttribute("nameBook", nameBook));
-        }
-        if(nameAuthor != null && !nameAuthor.isEmpty()) {
-            Optional<Book> author = hibernateBookDao.findByNameAuthor(nameAuthor);
-            author.ifPresent(book -> model.addAttribute("nameAuthor", nameAuthor));
-        }
-        return "library";
-        }
-
     @GetMapping("/adBook")
     public String adBook(Model model){
         model.addAttribute("adNewBook", new BookDto());
@@ -102,28 +78,24 @@ public class LibraryController {
         return "redirect:/";
     }
 
-    @GetMapping("/book/{id}")
-    public String getBookInfo(@PathVariable("id") Long id,
-                              @PathVariable("nameBook") String nameBook,
-                              @PathVariable("nameAuthor") String nameAuthor,
-                              @PathVariable("nameLastNameAuthor") String lastNameAuthor,
+    @GetMapping("/search")
+    public String getBookInfo(@RequestParam(value = "id", required = false) Long id,
+                              @RequestParam(value = "nameBook", required = false) String nameBook,
+                              @RequestParam(value = "nameAuthor", required = false) String nameAuthor,
+                              @RequestParam(value = "lastnameAuthor", required = false) String lastNameAuthor,
                               Model model){
-        Optional<Book> findByNameBook = hibernateBookDao.findByBookName(nameBook);
-        if(findByNameBook.isPresent()){
-            model.addAttribute("findByNameBook", nameBook);
+        if(nameBook != null && !nameBook.isEmpty()){
+            Optional<Book> findByNameBook = hibernateBookDao.findByBookName(nameBook);
+            findByNameBook.ifPresent(book -> model.addAttribute("book", book));
+            return "bookInfo";
         }
-        Optional<Book> findByNameAuthor = hibernateBookDao.findByNameAuthor(nameAuthor);
-        if(findByNameAuthor.isPresent()){
-            model.addAttribute("findByNameAuthor", findByNameAuthor);
-        }
-        Optional<Book> book = bookService.findById(id);
-        if(book.isPresent()){
-            model.addAttribute("book", book.get());
+        if(nameAuthor !=null && !nameAuthor.isEmpty()) {
+            Optional<Book> findByNameAuthor = hibernateBookDao.findByNameAuthor(nameAuthor);
+            findByNameAuthor.ifPresent(book -> model.addAttribute("book", book));
             return "bookInfo";
         }
             return "redirect:/library";
-        }
-
     }
 
 }
+
