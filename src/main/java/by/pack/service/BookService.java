@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -116,4 +117,8 @@ public class BookService {
         }
     }
 
+    public Optional<Book>findById(Long id){
+        Book book = hibernateBookDao.findByLineCount(id);
+        return Optional.ofNullable(book);
+    }
 }

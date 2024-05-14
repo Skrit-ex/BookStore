@@ -21,15 +21,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nameBook;
-
     private String nameAuthor;
-
     private String lastNameAuthor;
-
     private String genre;
-
     private String description;
 
     public Book(String nameBook, String nameAuthor, String lastNameAuthor, String genre, String description) {

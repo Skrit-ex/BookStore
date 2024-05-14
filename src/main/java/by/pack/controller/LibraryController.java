@@ -102,4 +102,28 @@ public class LibraryController {
         return "redirect:/";
     }
 
+    @GetMapping("/book/{id}")
+    public String getBookInfo(@PathVariable("id") Long id,
+                              @PathVariable("nameBook") String nameBook,
+                              @PathVariable("nameAuthor") String nameAuthor,
+                              @PathVariable("nameLastNameAuthor") String lastNameAuthor,
+                              Model model){
+        Optional<Book> findByNameBook = hibernateBookDao.findByBookName(nameBook);
+        if(findByNameBook.isPresent()){
+            model.addAttribute("findByNameBook", nameBook);
+        }
+        Optional<Book> findByNameAuthor = hibernateBookDao.findByNameAuthor(nameAuthor);
+        if(findByNameAuthor.isPresent()){
+            model.addAttribute("findByNameAuthor", findByNameAuthor);
+        }
+        Optional<Book> book = bookService.findById(id);
+        if(book.isPresent()){
+            model.addAttribute("book", book.get());
+            return "bookInfo";
+        }
+            return "redirect:/library";
+        }
+
+    }
+
 }
