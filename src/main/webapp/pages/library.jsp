@@ -17,8 +17,10 @@
 <body style="background-color: #d3cfcf" >
 
 <jsp:include page="home.jsp"/>
-
-<a href="/library/adBook"> Ad new Book </a>
+<button type="button" class="btn btn-primary position-relative">
+    <p><a class="link-light link-offset-2 link-underline link-underline-opacity-0" href="/library/adBook"> Add a new book </a></p>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-secondary">+1 <span class="visually-hidden">unread messages</span></span>
+</button>
 <div class="container text-center color=red">
     <div class="row align-items-end">
         <div class="col">
