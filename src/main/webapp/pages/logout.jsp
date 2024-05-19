@@ -12,6 +12,13 @@
 </head>
 <body>
 
+<%--<h1>Выход из системы</h1>--%>
+<%--<p>Вы уверены, что хотите выйти?</p>--%>
+<%--<form action="/user/logout" method="post">--%>
+<%--    <input type="submit" value="Выйти">--%>
+<%--</form>--%>
+
+
 <div onclick="window.location.href = 'home.jsp';">Перейти на другую страницу</div>
 
 </body>

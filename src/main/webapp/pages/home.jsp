@@ -31,7 +31,7 @@
         <a class="nav-link" href="/user/login">LogIn</a>
 
         <c:if test="${sessionScope.userSession != null}">
-          <a class="nav-link" href="/logout">LogOut</a>
+          <a class="nav-link" href="/user/logout">LogOut</a>
         </c:if>
 
         <c:if test="${sessionScope.userSession != null}">
