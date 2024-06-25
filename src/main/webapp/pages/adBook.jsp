@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Skritex
@@ -36,6 +37,10 @@
 
         <s:button> Submit </s:button>
     </s:form>
+
+    <div class="alert alert-success" role="alert" id="successMessage" style="display: ${bookAddedSuccessfully ? 'block' : 'none'}">
+        <h4 class="alert-heading">Your book was added!</h4>
+    </div>
 
     <h1>${errorBook}</h1>
 </head>

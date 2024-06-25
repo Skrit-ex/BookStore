@@ -5,6 +5,7 @@ import by.pack.dto.BookDto;
 import by.pack.entity.Book;
 import by.pack.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,11 +72,13 @@ public class LibraryController {
         }
         try {
             bookService.save(bookDto);
+            model.addAttribute("bookAddedSuccessfully", true);
+
         }catch (ConstraintDeclarationException e){
             model.addAttribute("errorBook", "You entered error Book, try again");
             return "adBook";
         }
-        return "redirect:/";
+        return "redirect:/library";
     }
 
     @GetMapping("/search")
